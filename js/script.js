@@ -1,14 +1,15 @@
 const playboard = document.getElementById('play-board');
 const controle = document.querySelectorAll('.controle i')
+
 let score = 0, recorde = 0
 let foodX, foodY;
 let snakeX = 5, snakeY= 10;
 let snakeBody = []
 let velocityX = 0, velocityY= 0;
+
 const foodPosition = () =>{
 foodX = Math.floor(Math.random() * 30) + 1;
 foodY = Math.floor(Math.random() * 30) + 1;
-
 }
 const changeDirection = (e) =>{
 switch(e.key){
@@ -28,10 +29,7 @@ switch(e.key){
         velocityX = -1
         velocityY = 0
     break;
-
-   
 }
-
 }
 
 controle.forEach(key => {
@@ -40,12 +38,8 @@ controle.forEach(key => {
 const initGame = ()=>{
     let htmlMarkup = `<div class="food" style="grid-area: ${foodY} / ${foodX}"></div>`;
    
-
-    if(snakeX === foodX && snakeY === foodY){
-        foodPosition()
-        snakeBody.push([foodX, foodY])
-        score++;
-    }
+pontuacao();
+    
   
     snakeX +=velocityX;
     snakeY += velocityY;
@@ -54,15 +48,12 @@ const initGame = ()=>{
     
    }
    snakeBody[0] = [snakeX, snakeY]
-   //vendo a pontuação recorde
-    if(score > recorde){
-        recorde = score
-    }
-
+  
+   
     if(snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30 ){
         snakeDead();
     }
-    //imprimindo pontuação
+    
     document.getElementById('high-score').innerHTML = `Recorde: ${recorde}`
     document.getElementById('score').innerHTML = `Pontuação: ${score}`
 
@@ -75,6 +66,19 @@ for(let i = 0; i < snakeBody.length; i++){
     }
 }
 playboard.innerHTML = htmlMarkup;
+}
+function pontuacao(){
+    if(snakeX === foodX && snakeY === foodY){
+        foodPosition()
+        snakeBody.push([foodX, foodY])
+        score++;
+    }
+    bateuRecorde();
+}
+function bateuRecorde(){
+    if(score > recorde){
+        recorde = score
+    }
 }
 function snakeDead(){
     snakeX = 5, snakeY= 10;

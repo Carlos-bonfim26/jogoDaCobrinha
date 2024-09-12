@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,900&display=swap');
 :root{
-    --background-body:#AFF9C9;
+    --background-body:#A3CBE1;
     --maca:#EF2917;
-    --cobra:#263021;
-    --campo:#00A35A;
-    --controle:#7C90A0;
-    --color:#363635;
+    --cobra:#149028;
+    --campo:#81E979;
+    --controle:#23526C;
+    --color:#DBD3AD;
 }
 
 *{
